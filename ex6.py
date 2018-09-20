@@ -1,10 +1,18 @@
-#only can find  by name in a  unfantancy way
+#only find by name in fantasy way
 from pathlib import Path
-from sys import argv
+import  argparse
 
-_,start,query=argv
+parser=argparse.ArgumentParser()
 
-start_path=Path(start)
+parser.add_argument('start',type=str)
+parser.add_argument('-n','--name',type=str)
+parser.add_argument('-t','--type',type=str)
 
-for  f in start_path.rglob(query):
+args=parser.parse_args()
+print(args)
+
+#断点
+start_path=Path(args.start[0])#address
+
+for f in start_path.rglob(args.name):#name
 	print(f)
