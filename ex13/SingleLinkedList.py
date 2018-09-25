@@ -104,3 +104,36 @@ print(f'"begin:"{colors.begin}"end:"{colors.end}')
 colors.pop()
 print(">>>pop2:")
 print(f'"begin:"{colors.begin}"end:"{colors.end}')
+
+
+
+
+
+
+
+
+
+
+
+colors=DoubleLinkedList()
+#push()
+colors.push("first")
+print(f"'begin:'{colors.begin}'end:'{colors.end}")
+colors.count()
+colors.push("second")
+print(f"'begin:'{colors.begin}'end:'{colors.end}")
+colors.count()
+colors.push("third")
+print(f"'begin:'{colors.begin}'end:'{colors.end}")
+colors.count()
+
+#pop()
+print('>>>first pop')
+colors.pop()
+print(f"'begin:'{colors.begin}'end:'{colors.end}")
+print('>>>second pop')
+colors.pop()
+print(f"'begin:'{colors.begin}'end:'{colors.end}")
+print('>>>third pop')
+colors.pop()
+print(f"'begin:'{colors.begin}'end:'{colors.end}")
