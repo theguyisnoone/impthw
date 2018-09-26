@@ -63,6 +63,18 @@ class DoubleLinkedList(object):
          return count
 
 
+    def _invariant(self):
+        if self.begin == None:#链表头为空，尾巴也要空
+            assert self.end==None ,"End set while begin is not."
+
+        if self.begin:#如果链表不为空
+            assert self.begin.prev ==None,"begin.prev not noen"#头没有前驱
+            assert self.end.next ==None,"end.next not null"    #尾没有后继
+
+
+
+#####test########
+
 colors=DoubleLinkedList()
 #push()
 colors.push("first")
