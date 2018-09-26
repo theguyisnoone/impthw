@@ -26,8 +26,9 @@ class DoubleLinkedList(object):
         #else begin  and end are new node with none
         else:
             #链表的begin&end都连接node（无需prev和next）
-            self.begin=DoubleLinkedListNode(obj,None,None)
-            self.end=self.begin
+            node=DoubleLinkedListNode(obj,None,None)
+            self.begin=node
+            self.end=node
 
     def pop(self):
         """Removes the last item and returns it."""
