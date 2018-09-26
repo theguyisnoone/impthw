@@ -47,8 +47,7 @@ class DoubleLinkedList(object):
                 # end.next = None
                 self.end.next = None
                 # if there's now one left, set begin to end
-                if self.end == self.begin:
-                    self.begin.next = None
+
             return node.value
         else:
             return None
@@ -89,7 +88,7 @@ class DoubleLinkedList(object):
                 self.begin.prev=None
             #return the value
             return node.value
-        #else sekf.begin =None
+        #else self.begin =None
             return  None
 
 
