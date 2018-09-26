@@ -147,30 +147,50 @@ class DoubleLinkedList(object):
         #return -1  to indicate not there
         return -1
 
+    def first(self):
+        """return a reference to the first item doesn't remove"""
+        return self.begin and self.begin.value or None
+
+    def last(self):
+        """return a reference to the first item doesn't remove"""
+        return self.end and self.end.value or None
+
+    def dump(self,mark="----"):
+        #set node to begin
+        node=self.begin
+        print(mark)
+        #while there's a node,print it out
+        while node:
+            print(node,end=" ")
+            #next node
+            node=node.next
+        #print new line
+        print()
+
 #####test########
 
-colors=DoubleLinkedList()
-#push()
-colors.push("first")
-print(f"'begin:'{colors.begin}'end:'{colors.end}")
-print(colors.count())
-colors.push("second")
-print(f"'begin:'{colors.begin}'end:'{colors.end}")
-print(colors.count())
-colors.push("third")
-print(f"'begin:'{colors.begin}'end:'{colors.end}")
-print(colors.count())
-
-#pop()
-print('>>>first pop')
-colors.pop()
-print(f"'begin:'{colors.begin}'end:'{colors.end}")
-print('>>>second pop')
-colors.pop()
-print(f"'begin:'{colors.begin}'end:'{colors.end}")
-print('>>>third pop')
-colors.pop()
-print(f"'begin:'{colors.begin}'end:'{colors.end}")
+# colors=DoubleLinkedList()
+# #push()
+# colors.push("first")
+# print(f"'begin:'{colors.begin}'end:'{colors.end}")
+# print(colors.count())
+# colors.push("second")
+# print(f"'begin:'{colors.begin}'end:'{colors.end}")
+# print(colors.count())
+# colors.push("third")
+# print(f"'begin:'{colors.begin}'end:'{colors.end}")
+# print(colors.count())
+#
+# #pop()
+# print('>>>first pop')
+# colors.pop()
+# print(f"'begin:'{colors.begin}'end:'{colors.end}")
+# print('>>>second pop')
+# colors.pop()
+# print(f"'begin:'{colors.begin}'end:'{colors.end}")
+# print('>>>third pop')
+# colors.pop()
+# print(f"'begin:'{colors.begin}'end:'{colors.end}")
 
 #remove()
 colors = DoubleLinkedList()
@@ -179,11 +199,12 @@ colors.push("Zinc White")
 colors.push("Nickle Yellow")
 colors.push("Perinone")
 print(f"all:{colors.count()}")
-
-
+print(f"first:{colors.first()}")#first()
+print(f"last:{colors.last()}")#last()
 print(colors.remove("Cobalt"))
 print(f"now:{colors.count()}")
-
+colors.dump("before perinone")
 print(colors.remove("Perinone"))
+colors.dump("after perinone")
 print(f"now:{colors.count()}")
 print(colors.remove("Nickle Yellow"))
