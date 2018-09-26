@@ -52,6 +52,46 @@ class DoubleLinkedList(object):
         else:
             return None
 
+    def get(self,index):
+        """get the value at index"""
+        node=self.begin
+        i=0
+        while node:
+            if i==index:#找到了返回值
+                return node.value
+            else:#不然遍历
+                i += 1
+                node=node.next
+        return None
+
+    def shift(self,obj):
+        """just another name for push"""
+        self.push(obj)
+
+
+    def unshift(self):
+        """remove the first item(from begin) and returns it"""
+        #if we have one  at begin
+        if self.begin:
+            #save the begin
+            node=self.begin
+            #if we have only None
+            if self.begin ==self.end:
+                #clear begin and end
+                self.begin=None
+                self.end=None
+            #else  we have more
+            else:
+                #set begin to begin.next
+                self.begin=node.next
+                #set begin.prev to none
+                self.begin.prev=None
+            #return the value
+            return node.value
+        #else sekf.begin =None
+            return  None
+
+
     def count(self):
          """Counts the number of elements in the list."""
          # do the slow count code from single linked lists
@@ -71,7 +111,41 @@ class DoubleLinkedList(object):
             assert self.begin.prev ==None,"begin.prev not noen"#头没有前驱
             assert self.end.next ==None,"end.next not null"    #尾没有后继
 
+    def detach_node(self,node):
+        #if the node is at the end
+        if self.end ==node:
+            self.pop()
+        #elif it's at the beginning
+        elif self.begin == node:
+            self.unshift()
+        #else it's in the middle
+        else:
+            #skip over it
+            #save node.prev,node.next
+            prev=node.prev
+            nxt=node.next
+            #set prev.next to saved next
+            prev.next=nxt
+            #set next.prev to saved prev
+            nxt.prev=prev
 
+    def remove(self,obj):
+        """Finds a matching item and removes it from the list."""
+        #start at begin
+        node=self.begin
+        #keep the count as return value
+        count=0
+        #while we have a node
+        while node:
+            #if the node.value matches object
+            if node.value == obj:
+                self.detach_node(node)
+                return count
+            else:
+                count+=1
+                node=node.next
+        #return -1  to indicate not there
+        return -1
 
 #####test########
 
@@ -97,3 +171,19 @@ print(f"'begin:'{colors.begin}'end:'{colors.end}")
 print('>>>third pop')
 colors.pop()
 print(f"'begin:'{colors.begin}'end:'{colors.end}")
+
+#remove()
+colors = DoubleLinkedList()
+colors.push("Cobalt")
+colors.push("Zinc White")
+colors.push("Nickle Yellow")
+colors.push("Perinone")
+print(f"all:{colors.count()}")
+
+
+print(colors.remove("Cobalt"))
+print(f"now:{colors.count()}")
+
+print(colors.remove("Perinone"))
+print(f"now:{colors.count()}")
+print(colors.remove("Nickle Yellow"))
