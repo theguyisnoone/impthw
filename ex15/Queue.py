@@ -1,13 +1,4 @@
-class QueueNode(object):
-    def __init__(self,value,nxt,prev):#get 4 arguments
-        self.value=value
-        self.next=nxt
-        self.prev=prev
-
-    def __repr__(self):
-        pval=self.prev  and self.prev.value or None
-        nval=self.next and self.next.value or None
-        return f"{self.value}:nval={repr(nval)}:pval={repr(pval)}"
+from QueueNode import *
 
 class Queue(object):
     def __init__(self):
@@ -27,12 +18,12 @@ class Queue(object):
 
     def unshift(self):#go out at the first positon
         if self.head:
-            # node=self.head
+            node=self.head  #要放在这里 不然if的代码块无法return
             if self.head==self.tail:    #just one element
                 self.head=None
                 self.tail=None
             else: #many
-                node=self.head
+                
                 self.head=node.next#head.next?
                 self.head.prev=None
             return node.value
@@ -41,8 +32,18 @@ class Queue(object):
 
 
     def drop(self):
-        pass
+        """Take the tail item and forget about it."""
+        if  self.head:
+            if self.head==self.tail:#single element
+                self.head=None
+                self.tail=None
+            else:
+                self.tail=self.tail.prev
+                self.tail.next=None
 
+    def first(self):
+        """Returns a *reference* to the first item, does not remove."""
+        return self.head !=None and self.head.value or  None
     def empty(self):
         """Indicates if the Queue is empty."""
         return self.head == None
@@ -65,15 +66,3 @@ class Queue(object):
             print(node,end="")
             node=node.next
         print()
-
-
-
-q1=Queue()
-q1.shift("p1")
-q1.shift("p2")
-q1.shift("p3")
-print(f"now:{q1.count()}people")
-q1.dump("show:")
-q1.unshift()
-print(f"now:{q1.count()}people")
-q1.dump("show:")
